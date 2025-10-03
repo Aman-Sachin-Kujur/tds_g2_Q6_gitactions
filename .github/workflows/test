@@ -1,17 +1,34 @@
-name: CI  # Workflow name
+name: CI with Caching Demo
 
-on:  # Triggers on push or pull request to main branch
+on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
-  test:  # Job name
-    runs-on: ubuntu-latest  # Use GitHub-hosted Ubuntu runner
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code  # Standard step to checkout repo
+      - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: 23f3002457@ds.study.iitm.ac.in  # Step with your email in the name
-        run: echo "Hello, world!"  # Simple command to run
+      - name: Cache demo (primes the cache)
+        id: cache-demo
+        uses: actions/cache@v4
+        with:
+          path: .cache-demo  # Dummy path since your repo has no dependencies (creates a small folder)
+          key: cache-fbf9a23  # Exact key required
+      
+      - name: prime-cache-fbf9a23  # Echoes hit/miss result
+        run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
+      
+      - name: 23f3002457@ds.study.iitm.ac.in  # Your original step from last assignment
+        run: echo "Hello, world!"
+      
+      # Optional: Create a dummy file to cache (only if cache missed)
+      - name: Create dummy cache content if miss
+        if: steps.cache-demo.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .cache-demo
+          echo "Dummy content" > .cache-demo/example.txt
