@@ -12,7 +12,7 @@ jobs:
     
     steps:
     
-      - name: prime-cache-fbf9a23
+      - name:prime-cache-fbf9a23
         run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
       - name: Checkout code
         uses: actions/checkout@v3
