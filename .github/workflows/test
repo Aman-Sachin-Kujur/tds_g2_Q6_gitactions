@@ -12,17 +12,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-    
-      - name: prime-cache-fbf9a23
+
+      - name: Cache setup
         id: cache-demo
         uses: actions/cache@v4
         with:
           path: .cache-demo
-          key: cache-fbf9a23  # Correct key as required
+          key: cache-fbf9a23  # Required key
+    
+      - name: prime-cache-fbf9a23
+        run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
        
     
-      - name: Echo cache hit status (prime-cache result)
-        run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
+      
+       
        
       - name: 23f3002457@ds.study.iitm.ac.in
         run: echo "Hello, world!"
