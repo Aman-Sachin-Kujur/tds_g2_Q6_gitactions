@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    
+      - name: prime-cache-fbf9a23
+        run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -20,9 +23,7 @@ jobs:
         with:
           path: .cache-demo
           key: cache-fbf9a23  # Required key
-    
-      - name: prime-cache-fbf9a23
-        run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
+
        
     
       
