@@ -1,0 +1,17 @@
+name: CI  # Workflow name
+
+on:  # Triggers on push or pull request to main branch
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:  # Job name
+    runs-on: ubuntu-latest  # Use GitHub-hosted Ubuntu runner
+    steps:
+      - name: Checkout code  # Standard step to checkout repo
+        uses: actions/checkout@v3
+      
+      - name: 23f3002457@ds.study.iitm.ac.in  # Step with your email in the name
+        run: echo "Hello, world!"  # Simple command to run
