@@ -12,24 +12,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-       
-      
-      - name: prime-cache-fbf9a23 
+    
+      - name: prime-cache-fbf9a23
         id: cache-demo
         uses: actions/cache@v4
         with:
           path: .cache-demo
           key: cache-fbf9a23  # Correct key as required
        
-      - name: Echo cache hit status
+    
+      - name: Echo cache hit status (prime-cache result)
         run: echo "Cache hit status: ${{ steps.cache-demo.outputs.cache-hit }}"
        
       - name: 23f3002457@ds.study.iitm.ac.in
         run: echo "Hello, world!"
        
-      # Optional: Create a dummy file to cache (only if cache missed)
-      - name: Create dummy cache content if miss
-        if: steps.cache-demo.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p .cache-demo
-          echo "Dummy content" > .cache-demo/example.txt
+   
